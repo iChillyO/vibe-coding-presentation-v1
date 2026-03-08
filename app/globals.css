@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0a0f;
+  --foreground: #f8fafc;
+  --neon-cyan: #22d3ee;
+  --neon-purple: #a855f7;
+  --lapis-blue: #2563eb;
+  --font-arabic: var(--font-almarai), sans-serif;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-arabic);
+  overflow-x: hidden;
+  margin: 0;
+  cursor: default;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera globally */
+*::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox globally */
+* {
+  -ms-overflow-style: none !important;
+  /* IE and Edge */
+  scrollbar-width: none !important;
+  /* Firefox */
+}
+
+/* Static Noise Overlay */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  z-index: 9999;
+  background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+}
+
+/* Background Atmospheric Elements */
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -1;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* Radial Lighting Overlays with Breathing Pulse */
+@keyframes breathing-glow {
+
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.radial-lighting {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(168, 85, 247, 0.08), transparent 60%),
+    radial-gradient(circle at center, #0f172a 0%, #0a0a0f 70%);
+  z-index: -2;
+}
+
+/* RTL Navigation Dots */
+#fp-nav {
+  right: auto !important;
+  left: 20px !important;
+}
+
+#fp-nav ul li a span,
+.fp-slidesNav ul li a span {
+  background: var(--neon-purple) !important;
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
+}
+
+.fp-controlArrow.fp-prev {
+  left: auto !important;
+  right: 15px !important;
+  border-color: transparent var(--neon-purple) transparent transparent !important;
+}
+
+.fp-controlArrow.fp-next {
+  right: auto !important;
+  left: 15px !important;
+  border-color: transparent transparent transparent var(--neon-purple) !important;
+}
+
+/* FullPage.js Overrides */
+.fp-watermark {
+  display: none !important;
+}
+
+/* Neon Glow Styles */
+.glow-lapis {
+  color: #60a5fa;
+  text-shadow: 0 0 10px rgba(37, 99, 235, 0.45), 0 0 24px rgba(96, 165, 250, 0.25);
+}
+
+.glow-cyan {
+  text-shadow: 0 0 6px rgba(34, 211, 238, 0.6), 0 0 20px rgba(34, 211, 238, 0.4);
+}
+
+/* Card / Panel Style */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  border-radius: 1.5rem;
+}
+
+/* Typography Helpers - Arabic Optimized */
+.heading-massive {
+  @apply text-4xl md:text-8xl font-black tracking-tight leading-tight;
+}
+
+.heading-section {
+  @apply text-3xl md:text-6xl font-extrabold tracking-tight mb-8 leading-snug;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.translate-z-\[75px\] {
+  transform: translateZ(75px);
+}
+
+.-translate-z-\[75px\] {
+  transform: translateZ(-75px);
+}
+
+.translate-x-\[75px\] {
+  transform: translateX(75px);
+}
+
+.-translate-x-\[75px\] {
+  transform: translateX(-75px);
+}
+
+.rotate-y-90 {
+  transform: rotateY(90deg);
+}
+
+.-rotate-y-90 {
+  transform: rotateY(-90deg);
+}
+
+/* Ambient Drift */
+@keyframes ambient-drift {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  33% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+
+  66% {
+    transform: translateY(5px) rotate(-1deg);
+  }
+}
+
+.ambient-drift {
+  animation: ambient-drift 10s ease-in-out infinite;
+}
+
+/* Bypass Framer Motion intersection observer bugs inside scrollable containers on mobile */
+@media (max-width: 1024px) {
+  .mobile-no-transform {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+    visibility: visible !important;
+  }
+}
